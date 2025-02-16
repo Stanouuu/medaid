@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from api import API_KEY
 # from sse_starlette.sse import EventSourceResponse
 from openai import OpenAI
 from pydantic import BaseModel
@@ -22,7 +23,7 @@ with open("prompt.txt", "r", encoding="utf-8") as f:
 
 client = OpenAI(
     base_url="https://api.scaleway.ai/488b2cbb-38e3-4cdb-ac85-7aef7f019264/v1",
-    api_key="d67906c0-c6ba-4db9-bbf3-fbc34adf6d21"
+    api_key=API_KEY
 )
 
 class ChatRequest(BaseModel):
@@ -37,6 +38,7 @@ def read_root():
     
 @app.post("/chat")
 async def chat(request: ChatRequest):
+    logger.info(API_KEY)
     logger.info("Posting Chat.")
 
     if not request.chat_history:

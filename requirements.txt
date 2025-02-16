@@ -4,3 +4,4 @@ openai==1.63.0           # OpenAI Python client
 pydantic==2.10.6         # Data validation (used by FastAPI)
 loguru==0.7.3            # Logger
 sse-starlette==2.2.1
+python-dotenv==1.0.1
