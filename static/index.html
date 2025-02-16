@@ -19,6 +19,21 @@
     <script>
         let chatHistory = [];
 
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: "hi", chat_history: chatHistory })
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendMessage(data.response, "bot");
+                chatHistory = data.chat_history;
+            })
+            .catch(error => console.error("Erreur:", error));
+        });
+
+
         function appendMessage(text, className) {
             let chatBox = document.getElementById("chat-box");
             let msg = document.createElement("div");
