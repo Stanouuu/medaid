@@ -1,8 +1,9 @@
 from dotenv import load_dotenv
+from loguru import logger
 import os
 
-API_KEY = ""
 #importation de l'API
-def get_api():
+def get_api():  
     load_dotenv()
-    API_KEY = os.getenv("API_KEY")
+    logger.info(os.getenv("API_KEY"))
+    return os.getenv("API_KEY")

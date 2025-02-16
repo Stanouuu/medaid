@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from api import API_KEY
+from api import get_api
 # from sse_starlette.sse import EventSourceResponse
 from openai import OpenAI
 from pydantic import BaseModel
@@ -15,6 +15,7 @@ logger.add("logs/app.log", rotation="1 day", retention="7 days", compression="zi
 logger.info("Application has started.")
 
 
+API_KEY=get_api()
 # Serve static files (CSS, JS, etc.)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -60,6 +61,8 @@ async def chat(request: ChatRequest):
         presence_penalty=0,
         stream=False,
     )
+
+    logger.info("Posting Chat.")
 
     bot_response = response.choices[0].message.content
     chat_history.append({"role": "assistant", "content": bot_response})
