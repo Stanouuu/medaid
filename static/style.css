@@ -5,6 +5,7 @@ body {
     align-items: center; 
     height: 100vh; 
     background-color: #ccf2ff; 
+    overflow: hidden;
 }
 
 #chat-container {
@@ -17,7 +18,7 @@ body {
 }
 
 #chat-box { 
-    max-height: 400px; 
+    max-height: 600px; 
     overflow-y: auto; 
     display: flex; 
     flex-direction: column; 
