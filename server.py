@@ -53,11 +53,11 @@ async def chat(request: ChatRequest):
 
     # Prepare a generator for streaming the response to the client
     response = client.chat.completions.create(
-        model="llama-3.3-70b-instruct",
+        model="qwen2.5-coder-32b-instruct",
         messages=chat_history,
-        max_tokens=2048,
-        temperature=0.7,
-        top_p=0.7,
+        max_tokens=512,
+        temperature=0.25,
+        top_p=1,
         presence_penalty=0,
         stream=False,
     )
